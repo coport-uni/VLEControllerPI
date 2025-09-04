@@ -13,7 +13,12 @@ class PT100Reader():
         temperature = self.sensor.temperature
         temperature = round(temperature, 2)
 
-        return temperature
+        if temperature < 100:
+            return temperature
+
+        else:
+            return 0
+
 
     def get_resistance(self):
         resistance = self.sensor.resistance

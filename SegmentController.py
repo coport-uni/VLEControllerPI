@@ -13,10 +13,22 @@ class SegmentController():
         self.display.brightness = 1.0
         self.display.blink_rate = 0
 
-    def run_number_display(self, input_number : int , input_colons : bool):
+    def run_number_display(self, input_number : float, input_colons : bool):
         self.display.colons[0] = input_colons
-        self.display.print(str(input_number).zfill(4))
+        number_array = list(map(int, str(int(input_number * 100))))
+        if len(number_array) == 3:
+            self.display[0] = "0"
 
+            for i in range(len(number_array)):
+                self.display[i+1] = str(number_array[i])
+
+        elif len(number_array) == 4:
+            for i in range(len(number_array)):
+                self.display[i] = str(number_array[i])
+
+        else: 
+            print("value_error")
+            
     def run_string_display(self, input_string : str):
         self.display.print(input_string)
 
